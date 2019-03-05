@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/bin/main.css">
+     <title>Contact</title>
+    <!-- Denver Steinmetz personal website 27 Feb 2018 -->
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="header"><h1>Denver Steinmetz</h1></div>
+        <nav class=nav-container>
+        <a href="../CodingProjectsPage/index.html" target="_blank" class="nav-link" ><button>Portfolio Projects</button></a>
+        <a href="#" class="nav-link"><button>Contact Me</button></a>
+        <a href="../ShopPage/index.html" class="nav-link" target="_blank"><button>Shop</button></a>
+        <a href="../CalendarPage/index.html" class="nav-link" target="_blank"><button>Calendar</button></a>
+        <a href="../../index.html" class="nav-link"><button>Main Page</button></a>
+        </nav>
+</div>
+        <div id="contact-section" >       
+             <div class="form-container">
+                <form name="gform" id="gform" enctype="text/plain"  action="https://docs.google.com/forms/d/e/1FAIpQLSf7n1GRPnwDRRAfvqG2PTlHzuMip6xbms2mOceU4sBBTmiAXg/formResponse?" target="hidden_iframe" >
+                    *First Name:<br>
+                    <input type="text" name="entry.2005620554" id="entry.2005620554" style="width:200px" placeholder="Enter your first name" required><br>
+                    *Last Name:<br>
+                    <input type="text" name="entry.1938736739" id="entry.1938736739" style="width:250px" placeholder="Enter your last name" required><br>
+                    *Email:<br>
+                    <input type="email" name="entry.1045781291" id="entry.1045781291" style="width:300px" placeholder="Enter your first email" required><br>
+                    Shipping Address:<br>
+                    <input type="text" name="entry.1065046570" id="entry.1065046570" style="width:600px" placeholder="Enter where you want shipments sent"><br>
+                    Phone:<br>
+                    <input type="number" name="entry.1166974658" id="entry.1166974658" style="width:200px" placeholder="Enter your phone number"><br>
+                    Comments:<br>
+                    <textarea rows="4" cols="50" style="resize:horizontal" name="entry.839337160" id="entry.839337160" placeholder="Drag the bottom right corner to resize box"></textarea><br>
+                    <input type="submit" value="Submit" onclick="doFade()">
+                  </form>
+                  <p style="color:white" id="response">*Required entry </p>
+                  
+            </div>
+            
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+                    
+            <script type="text/javascript">
+
+                function doFade(){
+                    let name = document.getElementById("entry.2005620554").value.toUpperCase();
+                        let infoForm = document.getElementById("gform");
+                        let fadeEffect =  setInterval(function () {
+                            if (!infoForm.style.opacity) {
+                                infoForm.style.opacity = 1;
+                            }
+                            if (infoForm.style.opacity > 0) {
+                                infoForm.style.opacity -= 0.01;
+                            } else {
+                                clearInterval(fadeEffect);
+                            }
+                        }, 10);
+                    infoForm.style.height="100px";
+                    document.getElementById("response").innerHTML =`<h2 style="text-align:center"> Thank you ${name}, your message was sent <h2>`;
+                }
+/*                  $("#gform").on("submit", ()=>{
+                    $("#gform").fadeOut(1000);
+                    let name = document.getElementById("entry.2005620554").value;
+                $('#response').html(`Thank you ${name}, your message was sent`);
+                });  */
+
+            </script>
+
+                <div class="section-container">
+                <section>
+                    <div class="button2">
+                        <a id="profile-link" href="https://github.com/steinmetzdenver" target="_blank">Link to Github Profile</a>
+                    </div>
+                    <div class="front">
+                        <div class="inner-lid">
+                              <img class="image2" src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/Octocat.png?raw=true">
+                        </div>
+                      <div class="hinge"></div>
+                        <div class="outer-lid">
+                              <img class="image2" src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/Octocat.png?raw=true">
+                        </div>
+                    </div>
+                </section>
+            </div>
+                    <div class="phone-container" >
+                        <div style="z-index: 1; padding-top:50px">Phone: 928-249-4164</div>
+                        <div class="circle circle-one" style="overflow: hidden"></div>
+                        <div class="circle circle-two" style="overflow: hidden"></div>
+                        <div class="circle circle-three" style="overflow: hidden"></div> 
+                    </div>
+       
+            <div id="map-container">
+                <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=28.77839999999999~-81.2676&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+                </iframe>
+                <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
+                    <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=28.77839999999999~-81.2676&amp;sty=r&amp;lvl=11&amp;FORM=MBEDLD">Display a larger map</a> &nbsp; | &nbsp;
+                    <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=28.77839999999999~-81.2676&amp;sty=r&amp;lvl=11&amp;rtp=~pos.28.77839999999999_-81.2676____&amp;FORM=MBEDLD">Calculate an itinerary</a>
+                </div>
+            </div>
+        </div>
+      
+
+  
+</body>
+</html>
