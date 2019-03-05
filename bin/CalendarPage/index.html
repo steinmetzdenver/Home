@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <script src="../fullcalendar.js"></script><!-- 
+     <script src="../scheduler.js"></script> -->
+     <script src="../CalendarData/CalendarData.js"></script>     
+<!--       <script src="../jquery.js"></script>   
+      <script src="../bootstrap.min.js"></script>    -->
+     <link href="../fullcalendar.min.css" rel="stylesheet" /> 
+<!--      <link href="../scheduler.css" rel="stylesheet" />  -->
+     <style>
+     body {background-color: rgb(240, 240, 175)}
+     #calendar {
+       margin:auto;
+      width:800px;
+      height:650px;
+      border-style: outset;
+      border-width: 4px;
+      background-color: white
+     }
+       </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="calendar"></div>
+    <div id="tooltip-event" style=" visibility:hidden"></div>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  let data = calendarData();
+  let calendarEl = document.getElementById('calendar');
+  let calendar = new FullCalendar.Calendar(calendarEl, {
+        defaultView: 'month',
+        editable:true,
+        selectable:true,
+        eventLimit:false,
+        slotEventOverlap: true,
+        header: {
+                  left:"prev,next today",
+                  center: "title",
+                  right:"month, agendaWeek"
+                },
+        events: ([...data]), 
+        eventMouseEnter: function(enterMouseInfo){
+             let mouseX = event.pageX  ;
+             let mouseY = event.pageY + 20  ;
+             let popupTitle = enterMouseInfo.event._def.title;
+             let popupDescription = enterMouseInfo.event._def.extendedProps.description;
+             let tooltip = document.getElementById("tooltip-event");
+             tooltip.style.visibility="visible";
+             tooltip.style.zIndex="1000";
+             tooltip.style.position="absolute";
+             tooltip.style.width="200px";
+             tooltip.style.height="200px";
+             tooltip.style.backgroundColor="#f0f0f0";
+             tooltip.style.cursor="pointer";
+             tooltip.style.opacity="0.9";
+             tooltip.style.borderRadius="5px";
+             tooltip.style.border="1px solid black";
+             tooltip.style.top = mouseY + "px";
+             tooltip.style.left = mouseX + "px"; 
+           tooltip.innerHTML=`${popupTitle} <br> ${popupDescription}`},
+          eventMouseLeave:function(event, jsEvent, view){
+            let tooltip = document.getElementById("tooltip-event");
+             tooltip.style="visibility:hidden;cursor:default"
+           },
+
+    });
+  calendar.render();
+
+  });
+    </script>
+
+</body>
+</html>
