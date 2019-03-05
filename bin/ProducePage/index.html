@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!--     note - use https://drive.google.com/uc?export=view&id=    then up to /view -->
-<!--      <script src="https://drive.google.com/uc?export=view&id=1TdQarA7lYzCO50GR_QBwvpI4tqL76_8U"></script>  --> 
-    <script src="../ShopItemData/ProduceData.js"></script> 
+     <script src="https://drive.google.com/uc?export=view&id=18IaWI5kcZx8jYY2FeqVEfdGqeqs_wJ5h"></script> 
+     <!-- <script src="../../ShopData/furnPhotos.js"></script> -->
     <style>
     html, body {
         background-color: #ffeead;
@@ -204,33 +204,33 @@
         -ms-grid-row:1;
         -o-grid-row:1;
         grid-row:1;
-    }         
+    }
     </style>
     <title>Shop Items</title>
 </head>
 <body>
-        <div id="page-top-grid">
-                <div id="main-picture-div" >
-                        <img id="main-image" src="../Images/VariousImages/Candelabra.png" />
-                </div>
-                <div class="headingDiv"><h2 id="alt-description"></h2></div>
-                <div id = "shopping-cart-container">
+    <div id="page-top-grid">
+        <div id="main-picture-div" >
+            <img id="main-image" src="../images/produce.png" />
+        </div>
+        <div class="headingDiv"><h2 id="alt-description"></h2></div>
+        <div id = "shopping-cart-container">
                         <h2 style="margin-top:10px; margin-bottom:0px; margin-left:0px">Your Shopping Cart</h2>
                         <hr class="fancy-line"></hr>
-                </div>
-                <div id="purchase-cart-container">
-                        <div> Total Purchase: $<span id="total-price">0</span></div>
-                        <div>
-                            <button id="purchase-cart-button" class="purchaseButton" style = "margin-right:20px" type="button">Purchase Cart</button>
-                        </div>
-                </div>
-            </div>
-            <div id="container" onclick="switchPhotos(event)"></div>
-<script>
-    window.onload=function(){
+        </div>
+        <div id="purchase-cart-container">
+             <div> Total Purchase: $<span id="total-price">0</span></div>
+             <div>
+                <button id="purchase-cart-button" class="purchaseButton" style = "margin-right:20px" type="button">Purchase Cart</button>
+             </div>
+        </div>
+     </div>
+     <div id="container" onclick="switchPhotos(event)"></div>
+ <script>
+     window.onload=function(){
     // load thumbnails of items from object file to lower page grid
     producePhotos.forEach(function(item){
-        let containerObj = document.createElement("div");
+    let containerObj = document.createElement("div");
     containerObj.setAttribute("class", item.divClass);
     containerObj.setAttribute("title", "Click to display in main window");
     let imageObj = document.createElement("img");
@@ -251,7 +251,6 @@
             item[i].onmouseout = function(){
             this.style="border:3px solid lightgrey;cursor:default";
         }}; 
-
     // load thumbnail into main image and show item info in top right pane with add to cart button
     function switchPhotos(event) {
         let targetImage = event.target;
@@ -269,7 +268,6 @@
         let addToCartButton = document.getElementById("purchaseButton");
         addToCartButton.addEventListener("click",  function (){shoppingCartInfo(targetId, targetDescription, targetPrice, targetPhoto)});
        }} // end switchPhotos to main window
-
        //  Create shopping cart item rows
     function shoppingCartInfo(itemId, itemDescription, itemPrice, itemImage){
         let cartContainer = document.getElementById("shopping-cart-container");
@@ -302,7 +300,6 @@
         let purchaseCart = document.getElementById("purchase-cart-button");
         purchaseCart.addEventListener("click", purchaseCartRemove)
     } //end ShoppingCartInfo function
-
     // Remove shopping cart after purchase and display message in its place
     function purchaseCartRemove()
         {   let deleteRows = document.getElementById("shopping-cart-container");
@@ -337,7 +334,7 @@
         }
         document.getElementById("total-price").innerText=totalPrice;
     } 
-}
+ }
 </script>
 </body>
 </html>
