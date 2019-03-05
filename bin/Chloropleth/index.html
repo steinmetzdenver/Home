@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- <svg width="960" height="600" fill="none" stroke="#000" stroke-linejoin="round" stroke-linecap="round"></svg>
+ --><!--     <link rel="stylesheet" href="bootstrap.min.css"> 
+    <script src="jquery.js" ></script>
+    <script src="popper.min.js" ></script>
+    <script src="bootstrap.min.js" ></script> -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<style>
+   #county:hover {fill:red} 
+  .tooltip {
+            width:auto;
+            height:auto;
+            background-color:beige;
+            visibility:hidden;
+            position:absolute;
+            opacity:0.75
+  }
+  svg {width:960px;
+      height:700px;
+      margin:50px;
+      fill:none;
+      stroke:black;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+  }
+  .title {
+    fill:black;
+    font-size:25px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+  }
+</style>
+<title>Chloropleth by Denver Steinmetz 18Jan 19</title>
+</head>
+<body>
+<script>
+
+d3.select("body")
+  .append("svg");
+
+let svg = d3.select("svg");
+let path = d3.geoPath();
+
+let colors = ['#ffffe0','#fff2c7','#ffe4b1','#ffd69d','#ffc88e','#ffb981','#ffaa76','#ff9a6e','#fc8968','#f77a63','#f16b5f','#e95d5a','#e14f55','#d8404e','#cd3346','#c2263d','#b61832','#a80c25','#9b0316','#8b0000'];
+let colorScale = d3.scaleQuantile()
+    .range(colors)
+    .domain([2.6, 75.1]);
+
+d3.json("https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json").then(function(countyData)
+{
+  d3.json("https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json").then(function(educationData) {
+    let minEducation = d3.min(educationData, (d)=>d.bachelorsOrHigher);
+    let maxEducation = d3.max(educationData, (d)=>d.bachelorsOrHigher);
+    let colorScale = d3.scaleQuantile()
+    .range(colors)
+    .domain([minEducation,maxEducation]);
+
+   svg.append("g")
+      .selectAll("path")
+      .data(topojson.feature(countyData, countyData.objects.counties).features)
+      .enter()
+      .append("path")
+      .attr("id", "county")
+      .attr("fill", (d)=>
+      {
+        let idMatch = educationData.filter((item)=>item.fips == d.id);   
+        return colorScale(idMatch[0].bachelorsOrHigher)
+      } )
+      .attr("d",path)
+      .on("mouseover", (d)=>{
+                    let idMatch = educationData.filter((item)=>item.fips == d.id);
+                    let tooltipWidth = idMatch[0].area_name.length + idMatch[0].state.length + idMatch[0].bachelorsOrHigher.length + 30;
+                    tooltip.style("visibility", "visible")
+                    tooltip.select("text")
+                          .text(idMatch[0].area_name + " " + idMatch[0].state + ", % Bachelors Degree or Higher = " + idMatch[0].bachelorsOrHigher)
+                    })
+      .on("mouseout", ()=>{
+        tooltip.style("visibility", "hidden")       
+        })
+      .on("mousemove",()=> {
+          let mouseX = d3.event.pageX + 20;
+          let mouseY = d3.event.pageY; 
+          tooltip.style("left",mouseX + "px")
+          tooltip.style("top",mouseY + "px")});
+
+     let tooltip = d3.select("body")
+        .append("div")
+          .attr("class", "tooltip")
+          .attr("visibility", "hidden");
+
+        tooltip.append("text")
+          .style("font-size", "15px")
+          .style("stroke", "black")
+          .style("fill","black");
+
+                //Begin Legend setup         
+                let legendAxis = d3.scaleLinear()
+                    .range([0,500])
+                    .domain([minEducation, maxEducation]);
+
+                let x = d3.scaleLinear()
+                  .domain(d3.extent(colorScale.domain()))
+                  .range([0,500]);
+                
+               //The following sets up the legend axis tick scale and adds missing final d[0] to array
+                          let legendScale = colorScale.range().map((d)=>{
+                                d= colorScale.invertExtent(d)
+                                return d[0]});
+                          legendScale.push(maxEducation);
+                //End legend axis tick scale
+                
+                let legendXAxis = d3.axisBottom(legendAxis)
+                  .tickValues(legendScale);
+
+                let legendGroup = svg.append("g")
+                  .attr("transform", "translate(180,610)")
+                  .attr("class", "legendGroup")
+                  .selectAll("rect")
+                  .data(colorScale.range().map((d)=>colorScale.invertExtent(d)))
+                  .enter()
+                  .append("rect")
+                  .attr("height", 20)
+                  .attr("width", (d)=> x(d[1]) - x(d[0]))
+                  .attr("x", (d)=> x(d[0]))
+                  .attr("fill", (d)=>colorScale(d[0]));
+               
+                  d3.select(".legendGroup")
+                    .append("text")
+                    .text("% Bachelors or Higher")
+                    .attr("x", -150)
+                    .attr("y", 14)
+                    .style("fill", "black");
+
+                    d3.select(".legendGroup")
+                    .append("g")
+                    .attr("transform", "translate(0,20)")
+                    .call(legendXAxis); 
+                // End Legend setup 
+
+                d3.select("svg")
+                    .append("g")
+                    .attr("class", "title")
+                    .attr("transform", "translate(150,20)")
+                    .append("text")
+                    .text("US Population with Bachelors Degree or Higher by County");
+
+
+  svg.append("path")
+      .attr("stroke", "#aaa")
+      .attr("stroke-width", 0.5)
+      .attr("d", path(topojson.mesh(countyData, countyData.objects.counties,function(a, b) { return a !== b; })));
+
+  svg.append("path")
+      .attr("stroke-width", 0.5)
+      .attr("d", path(topojson.mesh(countyData, countyData.objects.states, function(a, b) { return a !== b; })));
+
+  svg.append("path")
+      .attr("d", path(topojson.feature(countyData, countyData.objects.nation, function(a, b) { return a !== b; })));
+
+})});
+
+</script>
+</body>
+</html>
