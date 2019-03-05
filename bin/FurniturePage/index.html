@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!--     note - use https://drive.google.com/uc?export=view&id=    then up to /view -->
-<!--      <script src="https://drive.google.com/uc?export=view&id=1B7xJcM_RYSxdYGLn5O5qJTIoTO5PoUEN"></script> 
- -->     <script src="../ShopItemData/FurnitureData.js"></script> 
- <style>
+     <script src="https://drive.google.com/uc?export=view&id=1B7xJcM_RYSxdYGLn5O5qJTIoTO5PoUEN"></script> 
+     <!-- <script src="../../ShopData/furnPhotos.js"></script> -->
+    <style>
     html, body {
         background-color: #ffeead;
     }
@@ -211,7 +211,7 @@
 <body>
     <div id="page-top-grid">
         <div id="main-picture-div" >
-                <img id="main-image" src="../Images/VariousImages/Candelabra.png" />
+            <img id="main-image" src="../images/GlitchSimplifiedTallCabinetMahogany.png" />
         </div>
         <div class="headingDiv"><h2 id="alt-description"></h2></div>
         <div id = "shopping-cart-container">
@@ -225,7 +225,7 @@
                 </div>
         </div>
     </div>
-    <div id="container" onclick="switchPhotos(event)"></div>
+  <div id="container" onclick="switchPhotos(event)"></div>
  <script>
      window.onload=function(){
     // load thumbnails of items from object file to lower page grid
@@ -251,7 +251,6 @@
             item[i].onmouseout = function(){
             this.style="border:3px solid lightgrey;cursor:default";
         }}; 
-
     // load thumbnail into main image and show item info in top right pane with add to cart button
     function switchPhotos(event) {
         let targetImage = event.target;
@@ -269,7 +268,6 @@
         let addToCartButton = document.getElementById("purchaseButton");
         addToCartButton.addEventListener("click",  function (){shoppingCartInfo(targetId, targetDescription, targetPrice, targetPhoto)});
        }} // end switchPhotos to main window
-
        //  Create shopping cart item rows
     function shoppingCartInfo(itemId, itemDescription, itemPrice, itemImage){
         let cartContainer = document.getElementById("shopping-cart-container");
@@ -302,7 +300,6 @@
         let purchaseCart = document.getElementById("purchase-cart-button");
         purchaseCart.addEventListener("click", purchaseCartRemove)
     } //end ShoppingCartInfo function
-
     // Remove shopping cart after purchase and display message in its place
     function purchaseCartRemove()
         {   let deleteRows = document.getElementById("shopping-cart-container");
@@ -337,7 +334,7 @@
         }
         document.getElementById("total-price").innerText=totalPrice;
     } 
-}
+ }
 </script>
 </body>
 </html>
