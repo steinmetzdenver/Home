@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--     <link rel="stylesheet" href="bootstrap.min.css"> 
+    <script src="jquery.js" ></script>
+    <script src="popper.min.js" ></script>
+    <script src="bootstrap.min.js" ></script> -->
+    <script src="d3.min.js" ></script> 
+    <style>
+      svg { width:1100px;
+            height:620px;
+            border:2px solid black }
+      body {font-family: Georgia, 'Times New Roman', Times, serif}
+      #title {font-size: 30px}
+      circle {stroke:black;
+              stroke-width:1px;
+              fill-opacity: 0.5}
+    </style>
+    <title>Scatter Plot Data Project by Denver Steinmetz 16Dec 19</title>
+  </head>
+  <body>
+    <div>
+      <script>
+
+          d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json").then(function(testData)
+              {
+                let margin = {top:40, left:60, right:20, bottom:20}
+                let h = 600-margin.top-margin.bottom;
+                let w = 1100-margin.left-margin.right;
+
+                let parseDate = d3.timeParse("%Y");
+                let parseTime = d3.timeParse("%M:%S");
+
+                //Next section starts date axes earlier and end later than min and max
+                const startTime = d3.min(testData,(d)=>d.Time);
+                //console.log("startTime " + startTime);
+                const stopTime = d3.max(testData,(d)=>d.Time);
+                //console.log("stopTime " + stopTime);
+                let startMinutes;
+                let startYaxis;
+                let stopMinutes;
+                let stopYaxis;
+
+
+                if (parseInt(startTime.substr(3,2)) <= 30)
+                {
+                  startMinutes = parseInt(startTime.substr(0,2))-1;
+                  startYaxis = startMinutes + startTime.substr(2,3);
+                  startYaxis.toString();
+                }
+                else 
+                {
+                  startMinutes = parseInt(startTime.substr(3,2))-30;
+                  startYaxis = startTime.substr(0,3) + startMinutes;
+                  startYaxis.toString();
+                }
+                //console.log("startYaxis " + startYaxis);
+
+                if (parseInt(stopTime.substring(3,2)) > 30)
+                {
+                stopMinutes = parseInt(stopTime.substr(0,2)) + 1;
+                stopYaxis = stopMinutes + stopTime.substr(2,3);
+                stopYaxis.toString();
+                }
+                else
+                {
+                stopMinutes = parseInt(stopTime.substr(3,2)) + 30;
+                stopYaxis = stopTime.substr(0,3) + stopMinutes;
+                stopYaxis.toString();                 
+                }
+                //console.log("stopYaxis " + stopYaxis);
+                let yLower = parseTime(startYaxis);
+
+                let yUpper = parseTime(stopYaxis); 
+
+
+                let startYear = d3.min(testData,(d)=>d.Year);    
+                startYear = parseInt(startYear) - 1;    
+                startYear.toString();
+                let stopYear = d3.max(testData,(d)=>d.Year);
+                stopYear = parseInt(stopYear) + 1;
+                stopYear.toString();
+                let xLower = parseDate(startYear);
+                let xUpper = parseDate(stopYear);  
+                // End start and end data adjustment
+                
+                let xScaling = d3.scaleTime()
+                  .range([0,w])
+                  .domain([xLower, xUpper]);
+
+                let yScaling = d3.scaleTime()
+                  .range([0,h])
+                  .domain([yLower, yUpper]);
+
+                let yAxisScaling = d3.scaleTime()
+                  .range([h, 0])
+                  .domain([yLower, yUpper]);
+
+              let xAxis = d3.axisBottom(xScaling).tickFormat(d3.timeFormat("%Y"))
+              let yAxis = d3.axisLeft(yAxisScaling).tickFormat(d3.timeFormat("%M:%S")) ;
+
+              let canvas = d3.select("body").append("svg")
+                .attr("width", w+margin.left+margin.right)
+                .attr("height", h+margin.top+margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+              canvas.append("text")
+                    .attr("id","title")
+                    .attr("transform","translate(160,-10)")
+                    .text("Doping in Professional Bicycle Racing - Alpe d'Huez");
+
+              canvas.selectAll("circle")
+                .data(testData)
+                .enter()
+                .append("circle")
+                .on("mouseover", function(d) {  
+                            d3.select(this)
+                              .transition()
+                              .duration(300)
+                              .attr("r", 30)})
+                .on("mouseout", function(d) {  
+                            d3.select(this)
+                              .transition()
+                              .duration(300)
+                              .attr("r", 4)})
+                .style("fill", (d)=>{
+                                    if (d.Doping == "") {return "green"}
+                                    else 	{ return "red" }})
+                .attr("r","4")
+                .attr("cx",(d)=>{console.log(d); return xScaling(parseDate(d.Year))})
+                .attr("cy",(d)=>h-yScaling(parseTime(d.Time)))
+                .append("title")
+                .text((d)=>"Time " + d.Time + " Year " + d.Year + " " + d.Name + " - " +  d.Doping);
+
+                canvas.append("g")
+                .call(yAxis);
+
+                canvas.append("g")
+                .attr("transform","translate(" + 0 + "," + h + ")")
+                .call(xAxis);
+
+                canvas.append("text")
+                    .attr("transform","translate(-50,250) rotate(90)")                  
+                    .attr("font-size","15px")
+                    .attr("text-anchor","middle")
+                    .text("Time (min:sec)");
+                    
+                //Legend setup
+                let legendGroup = canvas.append("g")
+                    .attr("transform", "translate(350,0)")
+                
+                legendGroup.append("rect")
+                    .attr("width", 225)
+                    .attr("height", 30)
+                    .style("fill", "none")
+                    .attr("stroke", "black")
+                    .attr("stroke-width", "2px");
+
+                legendGroup.append("circle")
+                    .attr("cx", 15)
+                    .attr("cy", 14)
+                    .attr("r", "8px")
+                    .attr("fill", "green");
+
+                legendGroup.append("circle")
+                    .attr("cx", 150)
+                    .attr("cy", 14)
+                    .attr("r", "8px")
+                    .attr("fill", "red");
+
+                legendGroup.append("text")
+                  .text("No Doping")
+                  .attr("x", 30)
+                  .attr("y", 19); 
+
+                legendGroup.append("text")
+                  .text("Doping")
+                  .attr("x", 165)
+                  .attr("y", 19); 
+                // End Legend setup
+         }
+          );
+      </script>
+</div>
+
+  </body>
+</html>
