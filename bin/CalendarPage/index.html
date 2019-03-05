@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <script src="../fullcalendar.js"></script><!-- 
-     <script src="../scheduler.js"></script> -->
-     <script src="../CalendarData/CalendarData.js"></script>     
-<!--       <script src="../jquery.js"></script>   
-      <script src="../bootstrap.min.js"></script>    -->
+     <script src="../fullcalendar.js"></script>
+     <script src="https://drive.google.com/uc?export=view&id=1JYwUmYfHgF__AZIudCM4ublichtaT6G-"></script>     
      <link href="../fullcalendar.min.css" rel="stylesheet" /> 
-<!--      <link href="../scheduler.css" rel="stylesheet" />  -->
      <style>
      body {background-color: rgb(240, 240, 175)}
      #calendar {
@@ -33,18 +29,18 @@
   let data = calendarData();
   let calendarEl = document.getElementById('calendar');
   let calendar = new FullCalendar.Calendar(calendarEl, {
-        defaultView: 'month',
-        editable:true,
-        selectable:true,
-        eventLimit:false,
-        slotEventOverlap: true,
-        header: {
-                  left:"prev,next today",
-                  center: "title",
-                  right:"month, agendaWeek"
-                },
-        events: ([...data]), 
-        eventMouseEnter: function(enterMouseInfo){
+    defaultView: 'month',
+    editable:true,
+    selectable:true,
+    eventLimit:false,
+    slotEventOverlap: true,
+    header: {
+      left:"prev,next today",
+      center: "title",
+      right:"month, agendaWeek"
+    },
+    events: ([...data]),
+    eventMouseEnter: function(enterMouseInfo){
              let mouseX = event.pageX  ;
              let mouseY = event.pageY + 20  ;
              let popupTitle = enterMouseInfo.event._def.title;
@@ -62,16 +58,14 @@
              tooltip.style.border="1px solid black";
              tooltip.style.top = mouseY + "px";
              tooltip.style.left = mouseX + "px"; 
-           tooltip.innerHTML=`${popupTitle} <br> ${popupDescription}`},
-          eventMouseLeave:function(event, jsEvent, view){
+             tooltip.innerHTML=`${popupTitle} <br> ${popupDescription}`},
+     eventMouseLeave:function(event, jsEvent, view){
             let tooltip = document.getElementById("tooltip-event");
              tooltip.style="visibility:hidden;cursor:default"
            },
-
-    });
-  calendar.render();
-
   });
+  calendar.render();
+});
     </script>
 
 </body>
