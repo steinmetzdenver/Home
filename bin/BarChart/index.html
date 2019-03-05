@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--     <link rel="stylesheet" href="bootstrap.min.css"> 
+    <script src="jquery.js" ></script>
+    <script src="popper.min.js" ></script>
+    <script src="bootstrap.min.js" ></script> -->
+    <script src="d3.min.js" ></script> 
+    <style>
+      svg {margin:50px}
+      g {font-family:Georgia, 'Times New Roman', Times, serif }
+      .bar {fill:blue}
+      .bar:hover {fill:red}
+      #title {font-size: 30px}
+      #tooltip {text-align: left}
+      #x-axis {}
+      #y-axis {}
+    </style>
+    <title>US GDP Project by Denver Steinmetz 15Dec 19</title>
+  </head>
+  <body>
+      <script>
+          d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json").then(function(testData)
+              {
+                let margin = {top:20, left:60, right:20, bottom:20}
+                let h = 400-margin.top-margin.bottom;
+                let w = 1000-margin.left-margin.right;
+
+                let xScaling = d3.scaleTime()
+                  .range([0,w])
+                  .domain([d3.min(testData.data,(d)=>{return new Date(d[0])}), d3.max(testData.data,(d)=>{return new Date(d[0])})]);
+
+                let yScaling = d3.scaleLinear()
+                  .range([0,h])
+                  .domain([0,d3.max(testData.data,(d)=>d[1])]);
+
+                let yAxisScaling = d3.scaleLinear()
+                  .range([h, 0])
+                  .domain([0,d3.max(testData.data,(d)=>d[1])]);
+
+              let xAxis = d3.axisBottom(xScaling);
+              let yAxis = d3.axisLeft(yAxisScaling).tickSizeInner([-w]);
+
+              let canvas = d3.select("body").append("svg")
+                .attr("width", w+margin.left+margin.right)
+                .attr("height", h+margin.top+margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+              canvas.append("text")
+                    .attr("id","title")
+                    .attr("transform","translate(350,32)")
+                    .text("United States GDP");
+
+              canvas.selectAll("rect")
+                .data(testData.data)
+                .enter()
+                .append("rect")
+                .attr("class","bar")
+                .attr("height",(d)=> yScaling(d[1]))
+                .attr("width","2")
+                .attr("x",(d,i)=>xScaling(new Date(d[0])))
+                .attr("y",(d)=>h-yScaling(d[1]))
+                .append("title")
+                .attr("id","tooltip")
+                .text((d)=>"$" + d[1] + " billion on " + Date(d[0]));
+
+                canvas.append("g")
+                .attr("id","y-axis")
+                .call(yAxis);
+
+                canvas.append("g")
+                .attr("transform","translate(" + 0 + "," + h + ")")
+                .attr("id","x-axis")
+                .call(xAxis);
+
+                canvas.append("text")
+                    .attr("transform","translate(-50,160) rotate(90)")                  
+                    .attr("fill","black")
+                    .attr("font-size","15px")
+                    .attr("text-anchor","middle")
+                    .text("Gross Domestic Product (billions)");
+         }
+          );
+      </script>
+
+
+  </body>
+</html>
