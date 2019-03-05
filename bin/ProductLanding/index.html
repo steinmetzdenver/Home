@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Landing Project</title>
+    <!-- by Denver Steinmetz steinmetzdenver@gmail.com 8 Nov 18 -->
+    <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+    <style>
+        body {background-color:rgb(247, 243, 243);
+        margin:0;
+        padding:0;
+        position:relative;}
+        #header {
+            display:flex;
+            padding:5px;
+            background-color:lightgoldenrodyellow;
+            position:fixed;
+            width:100%;
+            opacity:1;
+            z-index:1;
+            align-items:center;
+            border:2px solid grey;}
+        #nav-bar {
+            display:flex;
+            flex-wrap: wrap;
+            align-items:center;
+            justify-content:space-evenly;
+            padding:5px;
+            width:400px;}
+        .biz-name-container {
+            display:flex;
+            color:peru;
+            font-family: 'Pattaya', sans-serif;
+            background-color:lightgoldenrodyellow;
+            font-size:40px;
+            width:100%; 
+            justify-content:center;
+            align-items:center;
+            text-align:center;}
+        .logo-name-container {
+            display:flex;
+            max-width:100px;}
+        #header-img {
+            width:100px;
+            height:100px;
+            border-radius:3px;
+            text-align:center;}
+        .nav-link {
+            display:flex;
+            flex-wrap: nowrap;
+            margin:5px;}
+        #form {
+            padding-top:150px;  
+            text-align:center;     
+        }
+        #email {
+            width:200px;
+           }
+        .facts-container {
+            display:flex;
+            justify-content:space-evenly;}
+        #video {
+            display:flex;}
+        #blurb {
+           display:flex;
+           flex-direction: column;
+           justify-content:center;}
+        .shop-container {
+            display:flex;
+            flex-wrap: nowrap;
+            text-align: center;
+            justify-content:center;}
+        .shop-item {
+            display:flex;
+            flex-direction: column;
+            width:350px;
+            border: 5px solid black;
+            margin:5px;
+            background-color:lightgoldenrodyellow;
+            padding-bottom:5px;}
+        .purchase-img {
+            width:100px; height:100px; margin-left:auto; margin-right:auto;border:2px solid  white; border-radius:5px;}
+        #submit:hover{
+        border-color:red;
+        box-shadow:5px 5px 2px black;}
+        footer {text-align:right;
+        background-color:lightgray;
+        text-align:right;
+        padding-bottom:15px;}
+
+@media (max-width:770px){
+    #form {padding-top:200px;}
+    }
+@media (max-width:700px) {
+    #header {flex-direction:column;
+        align-items:center;
+        justify-content:center;}
+
+    .shop-container {
+        flex-direction:column;
+        align-items:center;}
+    .facts-container {
+            flex-direction:column;}
+    #blurb {
+        margin:auto;
+        padding-bottom:10px;}
+    #email {
+            width:100px;}
+
+}
+@media (max-width:525px){
+    #form {padding-top:260px;}
+    }
+@media (max-width:475px){
+    #form {padding-top:320px;}
+    }
+    
+    </style>
+</head>
+<body>
+    <main>
+
+        <header id="header">
+            <div class="logo-container">
+                <img id="header-img" src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/logo.png?raw=true">
+            </div>
+           <h2 class="biz-name-container">Joshua Tree Ostrich Ranch</h2>
+           <nav id="nav-bar">
+                <a href="#shop-section" class="nav-link" style="text-decoration:none"><button>Shop</button></a>
+                <a href="#contactus-section" class="nav-link" style="text-decoration:none"><button>Contact Us</button></a>
+                <a href="#about-section" class="nav-link" style="text-decoration:none"><button>About</button></a>
+           </nav>
+        </div>
+        </header>
+        <form id="form" action="https://www.freecodecamp.com/email-submit" >
+            <label for="email">Sign Up to Our Mailing List</label>
+            <input type="email" name="email" id="email" placeholder="Enter Your Email Address Here">  
+            <input type="submit" id="submit" value="Subscibe">   
+        </form>
+    <br>
+        <div class="facts-container">
+            <ul id="blurb"> <h3>Did You Know?</h3>
+                <li>  An adult male ostrich weighs between 250 an 300 pounds.</li>
+                <li>  A single ostrich egg is equivalent to 16 to 20 chicken eggs. </li>
+                <li>  An ostrich can run at 40 mph. </li>
+                <li>  An ostrich can live to 40 years old.</li>
+            </ul>
+           <!--  <video id="video" controls> -->
+                <iframe width="500" height="375" src="https://www.youtube.com/embed/kKlhggdDWjQ" frameborder="0" ></iframe>
+                       <!--  </video> -->
+        </div>
+<h2 id="shop-section">Shop</h2>
+    <div class="shop-container">
+        <div class="shop-item">
+            <h2>Chicks For Sale</h2>
+             <img src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/IMG_1937.JPG?raw=true" class="purchase-img"> 
+             <ul  style="text-align:left">
+                 <li>At least 2 weeks old</li>
+                 <li>Eating regular food</li>
+                 <li>Not sexed</li>
+             </ul>
+             <input type="submit" id="button" value="Submit" style="width:55px; margin:auto; text-align:center">
+        </div>   
+        <div class="shop-item">
+            <h2>Fresh Eggs to Eat</h2>
+            <img src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/IMG_20151204_161344862.jpg?raw=true" class="purchase-img">
+            <ul  style="text-align:left">
+                 <li>Cleaned at ready to cook</li>
+                <li>Expedited Shipping at room temperature</li>
+                <li>Equivalent to 12-16 chicken eggs</li>
+             </ul>
+            <input type="submit" id="button" value="Submit" style="width:55px; margin:auto; text-align:center">
+        </div>
+        <div class="shop-item">
+            <h2>Egg Shells</h2>
+            <img src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/eggshells.png?raw=true" class="purchase-img">
+            <ul  style="text-align:left">
+                <li>Cleaned and deoderized</li>
+                <li>At least 7 inches at longest point</li>
+                <li>Great for decorating or carving</li>
+            </ul>
+            <input type="submit" id="button" value="Submit" style="width:55px; margin:auto; text-align:center">
+        </div>
+</div>
+<br>
+<div id="contactus-section">
+    <h2>Contact Us</h2>
+    <p>We are located at xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx. <br/>Phone: +1-xxx-xxx-xxxx <br/>
+    Email: xxxxxxxxxxxxxxxxxxxxxxxx@gmail.com</p>
+</div>
+<h2 id="about-section">About Us</h2>
+<p>
+The owner left the corporate pharmaceutical world and founded the Joshua Tree Ostrich Ranch in late 2014. 
+That path was not direct one and took him first to an french language immersion school in France. 
+Returning to the US, he toured the country in his truck camper, eventually settling in northeastern 
+Arizona where he bought a log home and a few acres of land. Always a rural person at heart and a lover 
+of the outdoors and animals, he set out building pens and acquiring ostriches. lthough he originally 
+envisioned a ranch dedicated only to raising ostrich and selling ostrich eggs and meat, he saw the 
+potential to expand into the tour business capitalizing on the heavy tourist traffic on the way to the 
+nearby Grand Canyon West Skywalk. An extra home behind the main ranch house became a gift shop and visitors 
+could enjoy feeding the adults and holding the chicks. Unfortunately, the tourist business is a fickle one 
+and people were too hurried to get back to Las Vegas for a Ranch tour.
+<br>
+Fortunately, the gift shop was a fully functioning home and only needed furniture to become a guest house 
+and the Joshua Tree Ostrich Ranch and Guest House was inaugurated in October 2015. The Guest House has been 
+an outstanding success and has welcomed travelers from all over the world. The hospitality business has been 
+a learning experience but a rewarding one. Meeting fascinating people and providing a homey spot away from 
+home during their travels is something the author never anticipated when he set out to live as he always 
+wanted just a year ago.
+</p>
+</main>
+<footer>
+    <span>Copyright 2018 Joshua Tree Ostrich Ranch<sup> &copy;</sup></span>
+    <a href="page2.html" target="_blank">Terms and Conditions</a>
+</footer>
+</body>
+</html>
