@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/bin/main.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <script src="../jquery.js" ></script>
      <title>Contact</title>
     <!-- Denver Steinmetz personal website 27 Feb 2018 -->
     <style>
@@ -17,11 +18,11 @@
     <div id="navbar">
         <div class="header"><h1>Denver Steinmetz</h1></div>
         <nav class=nav-container>
-        <a href="../CodingProjectsPage/index.html" target="_blank" class="nav-link" ><button>Portfolio Projects</button></a>
+        <a href="../CodingProjects/" target="_blank" class="nav-link" ><button>Portfolio Projects</button></a>
         <a href="#" class="nav-link"><button>Contact Me</button></a>
-        <a href="../ShopPage/index.html" class="nav-link" target="_blank"><button>Shop</button></a>
-        <a href="../CalendarPage/index.html" class="nav-link" target="_blank"><button>Calendar</button></a>
-        <a href="../../index.html" class="nav-link"><button>Main Page</button></a>
+        <a href="../Shop/" class="nav-link" target="_blank"><button>Shop</button></a>
+        <a href="../Calendar/" class="nav-link" target="_blank"><button>Calendar</button></a>
+        <a href="../../" class="nav-link"><button>Main Page</button></a>
         </nav>
 </div>
         <div id="contact-section" >       
@@ -48,9 +49,8 @@
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
                     
             <script type="text/javascript">
-
-                function doFade(){
-                    let name = document.getElementById("entry.2005620554").value.toUpperCase();
+                     function doFade(){
+                        let name = document.getElementById("entry.2005620554").value.toUpperCase();
                         let infoForm = document.getElementById("gform");
                         let fadeEffect =  setInterval(function () {
                             if (!infoForm.style.opacity) {
@@ -65,12 +65,12 @@
                     infoForm.style.height="100px";
                     document.getElementById("response").innerHTML =`<h2 style="text-align:center"> Thank you ${name}, your message was sent <h2>`;
                 }
-/*                  $("#gform").on("submit", ()=>{
-                    $("#gform").fadeOut(1000);
+   /*
+                 $("#gform").on("submit", ()=>{
+                     $("#gform").fadeOut().delay(1000);
                     let name = document.getElementById("entry.2005620554").value;
                 $('#response').html(`Thank you ${name}, your message was sent`);
-                });  */
-
+                }); */
             </script>
 
                 <div class="section-container">
@@ -80,11 +80,11 @@
                     </div>
                     <div class="front">
                         <div class="inner-lid">
-                              <img class="image2" src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/Octocat.png?raw=true">
+                              <img class="image2" src="../images/Octocat.png?raw=true">
                         </div>
                       <div class="hinge"></div>
                         <div class="outer-lid">
-                              <img class="image2" src="https://github.com/steinmetzdenver/freeCodeCamp/blob/master/Octocat.png?raw=true">
+                              <img class="image2" src="../images/Octocat.png?raw=true">
                         </div>
                     </div>
                 </section>
@@ -95,17 +95,16 @@
                         <div class="circle circle-two" style="overflow: hidden"></div>
                         <div class="circle circle-three" style="overflow: hidden"></div> 
                     </div>
-       
+            
             <div id="map-container">
-                <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=28.77839999999999~-81.2676&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
-                </iframe>
-                <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
-                    <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=28.77839999999999~-81.2676&amp;sty=r&amp;lvl=11&amp;FORM=MBEDLD">Display a larger map</a> &nbsp; | &nbsp;
+                 <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=28.77839999999999~-81.2676&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+                 </iframe>
+                 <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
+                    <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=28.77839999999999~-81.2676&amp;sty=r&amp;lvl=11&amp;FORM=MBEDLD">Show a larger map</a> &nbsp; | &nbsp;
                     <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=28.77839999999999~-81.2676&amp;sty=r&amp;lvl=11&amp;rtp=~pos.28.77839999999999_-81.2676____&amp;FORM=MBEDLD">Calculate an itinerary</a>
-                </div>
+                 </div>
             </div>
         </div>
-      
 
   
 </body>
