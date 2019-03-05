@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ostrich Races</title>
+    <!-- Denver Steinmetz 15 Nov 18 -->
+    <style>
+        body,html {width:100%; height:95%;}
+        span {
+            position:relative;
+            top:-8px;
+        }
+        .sky {  
+                width:100vw;
+                height:30%;
+                -webkit-display:flex;
+                -ms-display:flex;
+                -moz-display:flex;
+                -o-display:flex;
+                display:flex;
+                -webkit-align-items:flex-end;
+                align-items:flex-end;
+                -webkit-justify-content:space-around;
+                justify-content:space-around;
+                -webkit-background-image: linear-gradient(to bottom, white, rgb(175, 238, 238), rgb(175, 238, 238));
+                -moz-background-image: linear-gradient(to bottom, white, rgb(175, 238, 238), rgb(175, 238, 238));
+                -o-background-image: linear-gradient(to bottom, white, rgb(175, 238, 238), rgb(175, 238, 238));
+                background-image: linear-gradient(to bottom, white, rgb(175, 238, 238), rgb(175, 238, 238));}
+        .grass1 {
+                -webkit-background-image: linear-gradient(to bottom, rgb(15, 78, 15), green);
+                -moz-background-image: linear-gradient(to bottom, rgb(15, 78, 15), green);
+                -o-background-image: linear-gradient(to bottom, rgb(15, 78, 15), green);
+                background-image: linear-gradient(to bottom, rgb(15, 78, 15), green);
+                width:100vw;
+                height:15%;}
+        .grass2 {
+                -webkit-background-image: linear-gradient(to bottom, green, rgb(52, 218, 52));
+                -moz-background-image: linear-gradient(to bottom, green, rgb(52, 218, 52));
+                -o-background-image: linear-gradient(to bottom, green, rgb(52, 218, 52));
+                background-image: linear-gradient(to bottom, green, rgb(52, 218, 52));
+                width:100vw;
+                height:30%;}
+        .road {
+                background-color:rgba(128, 128, 128, 1);
+                width:100vw;
+                height:150px;}
+        .lines {
+                border-bottom:5px dashed white;
+                width:100vw;
+                height:75px;}
+        .tree {
+                width:50px;
+                height:50px;
+                padding-bottom:0px;
+                box-shadow: 0px 25px 20px -15px black;}
+        .sun {
+                position:absolute;
+                left:55%;
+                top:80px;}         
+        .ostrich1, .ostrich2 {
+                    width:50px;
+                    height:50px;
+                    left:0;
+                    padding-top:5px;               
+                    -webkit-filter:drop-shadow(0px 15px 5px black);  
+                    -moz-filter:drop-shadow(0px 15px 5px black);   
+                    filter:drop-shadow(0px 15px 5px black);
+                    -webkit-animation-name: run;
+                    -moz-animation-name: run;
+                    -o-animation-name: run;
+                    animation-name: run;
+                    -webkit-animation-timing-function: ease-in-out;
+                    -moz-animation-timing-function: ease-in-out;
+                    -o-animation-timing-function: ease-in-out;
+                    animation-timing-function: ease-in-out;
+                    -webkit-animation-iteration-count: infinite;
+                    -moz-animation-iteration-count: infinite;
+                    -o-animation-iteration-count: infinite;
+                    animation-iteration-count: infinite;}
+        .ostrich1 {
+                    -webkit-animation-duration:15s;
+                    -moz-animation-duration:15s;
+                    -o-animation-duration:15s;
+                    animation-duration:15s;} 
+        
+        .ostrich2 {
+                    -webkit-animation-duration:6s;
+                    -moz-animation-duration:6s;
+                    -o-animation-duration:6s;
+                    animation-duration:6s;}
+        @keyframes run{
+            0% { 
+                transform:translateX(0px);}
+            50% {
+                transform:translateX(90vw) rotateY(0deg)}
+            53% {
+                transform:translateX(90vw) rotateY(180deg)}
+            95% {
+                transform:translateX(0px) rotateY(180deg)}
+            100% {
+                transform: translateX(0px)}}
+        @-webkit-keyframes run{
+            0% { -webkit-transform:translateX(0px);}
+            50% {
+                -webkit-transform:translateX(90vw) rotateY(0deg)}
+            53% {
+                -webkit-transform:translateX(90vw) rotateY(180deg)}
+            95% {
+                -webkit-transform:translateX(0px) rotateY(180deg)}
+            100% {
+                -webkit-transform: translateX(0px)}}
+        @-moz-keyframes run{
+            0% { 
+                -moz-transform:translateX(0px);}
+            50% {
+                -moz-transform:translateX(90vw) rotateY(0deg)}
+            53% {
+                -moz-transform:translateX(90vw) rotateY(180deg)}
+            95% {
+                -moz-transform:translateX(0px) rotateY(180deg)}
+            100% {
+                -moz-transform: translateX(0px)}}
+.slidecontainer {
+    width: 100%;
+    margin-left:15%;
+    margin-top:5px;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 30%;
+  height: 20px;
+  background: #d3d3d3; 
+  outline: none;
+  opacity: 0.9;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border:1px solid black;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 20px;  
+  border:outset;
+  background:red; 
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+        <div class="sky">
+            <img src="../Images/VariousImages/sun.png"  class= "sun" >
+            <img src="../Images/VariousImages/tree.png" class="tree" >
+            <img src="../Images/VariousImages/tree.png" class="tree" >
+            <img src="../Images/VariousImages/tree.png" class="tree" >
+            <img src="../Images/VariousImages/tree.png" class="tree" >
+            <img src="../Images/VariousImages/tree.png" class="tree" >
+        </div>
+        <div class="grass1"></div>
+        <div class="road">
+            <div class="lines" ><img class="ostrich1" src="../Images/VariousImages/runningostrich.png"> </div>
+            <div class="lines" ><img class="ostrich2" src="../Images/VariousImages/runningostrich.png" ></div>
+        </div>
+        <div class="grass2"></div>
+
+        <div class="slidecontainer">
+          <span>Ostrich #1 Speed: &nbsp; &nbsp; Faster</span>  <input type="range" min="1" max="15" value="15" class="slider" id="myRange1"><span> Slower</span>
+          <br/>
+          <span>Ostrich #2 Speed: &nbsp; &nbsp; Faster</span>  <input type="range" min="1" max="15" value="15" class="slider" id="myRange2"><span> Slower</span>
+
+        </div>
+        <script>
+            window.onload=function(){
+            let slider1 = document.getElementById("myRange1");
+            let slider2 = document.getElementById("myRange2");
+ 
+            slider1.addEventListener("change", function() {
+            let first = document.getElementsByClassName("ostrich1")[0];
+            first.style.animationDuration = this.value + "s";
+            });
+
+            slider2.addEventListener("change", function() {
+            let first = document.getElementsByClassName("ostrich2")[0];
+            first.style.animationDuration = this.value + "s";
+            });
+            }
+        </script>
+
+</body>
+</html>
