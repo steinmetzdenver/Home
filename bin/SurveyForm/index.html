@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey Form for freeCodeCamp</title>
+    <!-- by Denver Steinmetz steinmetzdenver@gmail.com 6 Nov 18 -->
+     <style>
+    body {
+        background-color:rgb(228, 228, 228);
+        font-family: 'Times New Roman', Times, serif}
+    #title {
+        text-align:center;}
+    #main {
+        background-color:white;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        margin:2% 10% 5% 10%;
+        border-radius:1%;
+        padding-top:5px;}
+    input:hover{
+        border-color:red;
+        box-shadow:5px 5px 2px black;}
+    button:hover{
+        border-color:red;
+        box-shadow:5px 5px 2px black;
+        font-size:20px;}
+    #description {
+        text-align:center;}
+    .centered-label {
+        display:inline-block;
+        text-align:right;
+        width:45%;  
+        vertical-align:middle;}
+    .input-fields {
+        display:inline-block;
+        width:45%;
+        margin-top:3px;
+        margin-bottom:3px;}
+    #comment{
+        vertical-align:middle;
+        display:inline-block;
+        text-align:left;
+        height:100%}
+    #submit {
+        margin-left:50%;
+        margin-bottom:10px;}
+    #legend-label {
+        text-align:center;
+        font-weight:bolder;}
+    #fieldset-div {
+        padding-left:10%; 
+        padding-right:10%;}
+    fieldset {
+        text-align:center;}
+    #keep-together {
+        white-space:nowrap;
+        display:inline-block;}
+    </style>
+</head>
+<body>
+        <h1 id="title">Survey Form</h1>
+        <main id="main">
+            <p id="description">Let us know how we can improve freeCodeCamp</p>
+            <p style="font-size:10px; font-style:italic; text-align:center"><sup>*</sup>Required Entry</p>
+            <form id="survey-form">
+                <label class="centered-label" id="name-label" for="name">*Name:</label>
+                <input type="text" id="name" name="name" class="input-fields" placeholder="Enter Your Name Here" required>
+                <br>
+                <label class="centered-label" id="email-label" for="email">*Email:</label>
+                <input type="email" id="email"  name="email" class="input-fields" placeholder="Enter Your Email Address Here" required>  
+                <br>
+                <label class="centered-label" id="number-label" for="number">*Age:</label>
+                <input type="number" id="number" name="age"  min="1" max="120" class="input-fields" placeholder="Enter Your Age Here (numbers only)" required> <br><br>
+                <label class="centered-label" for="dropdown">Which option best describes your current role?</label>
+                <select id="dropdown" name="currentRole"size="1"> 
+                    <option value="student">Student</option>   
+                    <option value="fullTimeJob">Full Time Job</option>   
+                    <option value="fullTimeLearner">Full Time Learner</option>    
+                    <option value="PreferNot">Prefer Not to Say</option>    
+                    <option value="other" selected>Other</option>    
+                </select><br><br>
+                <div id="fieldset-div">
+                    <fieldset >
+                        <legend id="legend-label">*How likely is that you would recommend freeCodeCamp to a friend?</legend>
+                        <span id="keep-together">
+                        <input id="definitely" type="radio" name="recommend" value="1" required>
+                        <label for="definitely">Definitely</label></span>
+                        <span id="keep-together">
+                        <input id="maybe" type="radio" name="recommend" value="2" required>
+                        <label for="maybe">Maybe</label></span>
+                        <span id="keep-together">
+                        <input id="not-sure" type="radio" name="recommend" value="3" required>
+                        <label for="not-sure">Not Sure</label></span>
+                    </fieldset>
+                </div>
+                <br>
+                <label class="centered-label" for="like-most">What do you like most in FCC:  </label>
+                 <select id="like-most" name="likeMost" size="1"> 
+                    <option value="challenges" >Challenges</option>   
+                    <option value="projects" selected>Projects</option>   
+                    <option value="community">Community</option>    
+                    <option value="open-source">Open Source</option>      
+                </select><br><br>
+                <div id="fieldset-div">
+                    <fieldset >
+                    <legend id="legend-label"> Things that should be improved in the future
+                                (Check all that apply):</legend>
+                    <span id="keep-together">
+                        <input id="front-end-projects" name="improvements" type="checkbox" value="1">
+                        <label for="front-end-projects">Front-end Projects</label></span>
+                    <span id="keep-together">
+                        <input id="back-end-projects" name="improvements" type="checkbox" value="2" >
+                        <label for="back-end-projects">Back-end Projects</label></span>
+                    <span id="keep-together">
+                        <input id="data-visualization" name="improvements" type="checkbox" value="3">
+                        <label for="data-visualization">Data Visualization</label></span>
+                    <span id="keep-together">
+                        <input id="challenges" name="improvements" type="checkbox" value="4" >
+                        <label for="challenges">Challenges</label></span>
+                    <span id="keep-together">
+                        <input id="open-source-community" name="improvements" type="checkbox" value="5" >
+                        <label for="open-source-community">Open Source Community</label></span>
+                    <span id="keep-together">
+                        <input id="gitter-help-rooms" name="improvements" type="checkbox" value="6">
+                        <label for="gitter-help-rooms">Gitter help rooms</label></span>
+                    <span id="keep-together">
+                        <input id="videos" name="improvements" type="checkbox" value="7" >
+                        <label for="videos">Videos</label></span>
+                    <span id="keep-together">
+                        <input id="city-meetups" name="improvements" type="checkbox" value="8">
+                        <label for="city-meetups">City Meetups</label></span>
+                    <span id="keep-together">
+                        <input id="wiki" name="improvements" type="checkbox" value="9">
+                        <label for="wiki">Wiki</label></span>
+                    <span id="keep-together">
+                        <input id="forum" name="improvements" type="checkbox" value="10" >
+                        <label for="forum">Forum</label></span>
+                    <span id="keep-together">
+                        <input id="additional-courses" name="improvements" type="checkbox" value="11">
+                        <label for="additional-courses">Additional Courses</label></span>
+                    </fieldset>
+                </div>
+                <br><br>
+                <label class="centered-label" for="comment">Any Comments or Suggestions?</label>
+                <textarea id="comment" name="comment" rows="3">Enter your comment here. Resize as needed.</textarea>
+                <br><br>
+                <button id="submit" type="submit">Submit</button>
+            </form>
+        </main>
+</body>
+</html>
