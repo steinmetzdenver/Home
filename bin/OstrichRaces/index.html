@@ -176,15 +176,16 @@
             window.onload=function(){
             let slider1 = document.getElementById("myRange1");
             let slider2 = document.getElementById("myRange2");
+            let first = document.getElementsByClassName("ostrich1")[0];
+            let second = document.getElementsByClassName("ostrich2")[0];
  
             slider1.addEventListener("change", function() {
-            let first = document.getElementsByClassName("ostrich1")[0];
-            first.style.animationDuration = this.value + "s";
+            first.style.animationDuration = event.target.value + "s";
+            console.log(event.target.value);
             });
 
             slider2.addEventListener("change", function() {
-            let first = document.getElementsByClassName("ostrich2")[0];
-            first.style.animationDuration = this.value + "s";
+            second.style.animationDuration = event.target.value + "s";
             });
             }
         </script>
