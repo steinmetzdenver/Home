@@ -227,7 +227,6 @@
      </div>
     <div id="container" onclick="switchPhotos(event)"></div>
  <script>
-     window.onload=function(){
     // load thumbnails of items from object file to lower page grid
     toolsPhotos.forEach(function(item){
     let containerObj = document.createElement("div");
@@ -333,8 +332,7 @@
             totalPrice = Math.round(totalPrice*100)/100;
         }
         document.getElementById("total-price").innerText=totalPrice;
-    } 
- }    
+    }   
 </script>
 </body>
 </html>
